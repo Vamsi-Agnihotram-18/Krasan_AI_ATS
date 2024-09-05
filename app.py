@@ -3,49 +3,43 @@ import google.generativeai as genai
 import streamlit as st
 from typing_extensions import TypedDict
 
-# Ensure the API key is set in the environment variables
-
-# Configure the Gemini API
 api_key ='AIzaSyClnWNUlKao9KxSfEb3J-zCffWHS89kh5s'
 genai.configure(api_key=api_key)
 
-# Initialize the model
 model = genai.GenerativeModel('gemini-1.5-flash')
 
-# Define the state structure
+
 class State(TypedDict):
     skills: list
 
-# Function to get job role and pay per hour based on input skills
+
 def get_job_role_and_pay(state: State) -> str:
     input_skills = ', '.join(state["skills"])
     prompt = f"Given the skills: {input_skills}, list the most relevant job role and its pay per hour. Provide only the job role and pay per hour in your response."
     
     try:
-        # Use the Gemini API to generate a response
+        
         response = model.generate_content(prompt)
-        # Extract and clean the response
+        
         output = response.text.strip()
         return output
     except Exception as e:
         print(f"Error calling Gemini API: {e}")
         return "I'm having trouble connecting to the service. Please try again later."
 
-# Function to get skills based on job role
 def get_skills_by_job_role(job_role: str) -> str:
     prompt = f"Given the job role: {job_role}, list 5 essential skills for this role. Provide only the skills in your response."
     
     try:
-        # Use the Gemini API to generate a response
+        
         response = model.generate_content(prompt)
-        # Extract and clean the response
+       
         output = response.text.strip()
         return output
     except Exception as e:
         print(f"Error calling Gemini API: {e}")
         return "I'm having trouble connecting to the service. Please try again later."
 
-# Streamlit frontend
 def main():
     logo='d2.jpeg'
     st.image(logo)
