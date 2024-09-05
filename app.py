@@ -111,10 +111,11 @@ Response format:
 
 [Role] (Role Match: %%) - Est Pay: $X-Y/hour
 
-Relevant skills that you considered for the match in short
-And, reason in 1 sentence including all technical details
+Relevant skills that you considered for the match in short.
+And, reason in 1 sentence including all technical details.
 
-Please don't give any extra notes or anything asfter the response
+
+Please don't give any extra notes or anything after the response.
 
 """
     
