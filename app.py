@@ -14,7 +14,6 @@ class State(TypedDict):
 
 
 def get_job_role_and_pay(state: State) -> str:
-    st.write("hello")
     input_skills = ', '.join(state["skills"])
     prompt = f"""Train yourself with simple technical defination of each of these job roles: 
     
