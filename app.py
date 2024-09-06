@@ -12,7 +12,7 @@ model = genai.GenerativeModel('gemini-1.5-flash')
 class State(TypedDict):
     skills: list
 
-
+@st.cache_data(show_spinner=False)
 def get_job_role_and_pay(state: State) -> str:
     input_skills = ', '.join(state["skills"])
     prompt = f"""Train yourself with simple technical defination of each of these job roles: 
@@ -129,6 +129,7 @@ Please don't give any extra notes or anything after the response.
         print(f"Error calling Gemini API: {e}")
         return "I'm having trouble connecting to the service. Please try again later."
 
+@st.cache_data(show_spinner=False)
 def get_skills_by_job_role(job_role: str) -> str:
     prompt = f"Given the job role: {job_role}, list 100 essential skills for this role. Provide only the skills in your response in an organized format. Please don't give any extra notes or anything asfter the response"
     
